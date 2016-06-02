@@ -28,3 +28,7 @@ dependencies {
     testCompile 'com.vtence.molecule:molecule:0.10-SNAPSHOT:tests'
 
 }
+
+task stage {
+    dependsOn build
+}
