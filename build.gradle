@@ -22,6 +22,7 @@ dependencies {
     compile 'com.vtence.molecule:molecule:0.10-SNAPSHOT'
     compile 'org.simpleframework:simple-http:6.0.1'
     compile 'com.samskivert:jmustache:1.12'
+    compile 'org.mapdb:mapdb:1.0.9'
 
     testCompile "junit:junit:4.12"
     testCompile 'org.hamcrest:hamcrest-library:1.3'
