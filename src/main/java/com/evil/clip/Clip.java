@@ -7,7 +7,7 @@ import java.io.IOException;
 public class Clip {
 
     public static void main(String[] args) throws IOException {
-        String hostToBindTo = "localhost";
+        String hostToBindTo = "0.0.0.0";
         int port = 7575;
         if (args.length == 2) {
             hostToBindTo = args[0];
