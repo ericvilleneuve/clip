@@ -26,9 +26,11 @@ repositories {
 dependencies {
     compile 'com.vtence.molecule:molecule:0.10-SNAPSHOT'
     compile 'org.simpleframework:simple-http:6.0.1'
+    compile 'com.samskivert:jmustache:1.12'
 
     testCompile "junit:junit:4.12"
     testCompile 'org.hamcrest:hamcrest-library:1.3'
+    testCompile 'org.mockito:mockito-core:2.0.52-beta'
     testCompile 'com.vtence.molecule:molecule:0.10-SNAPSHOT:tests'
 
 }

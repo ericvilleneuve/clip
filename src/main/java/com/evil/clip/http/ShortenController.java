@@ -1,17 +1,21 @@
 package com.evil.clip.http;
 
+import com.evil.clip.view.ShortenFormView;
 import com.vtence.molecule.Application;
 import com.vtence.molecule.Request;
 import com.vtence.molecule.Response;
 import com.vtence.molecule.http.HttpStatus;
 
-public class LandingController implements Application {
+public class ShortenController implements Application {
 
-    public LandingController() {
+    private ShortenFormView view;
+
+    public ShortenController(ShortenFormView view) {
+        this.view = view;
     }
 
     @Override
     public void handle(Request request, Response response) throws Exception {
-        response.status(HttpStatus.OK).done("Hello World!");
+        response.status(HttpStatus.OK).body(view.render()).done();
     }
 }

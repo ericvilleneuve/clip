@@ -1,28 +1,26 @@
 package com.evil.clip.http;
 
 import com.evil.clip.Clip;
-import com.vtence.molecule.Request;
-import com.vtence.molecule.Response;
+import com.vtence.molecule.testing.http.HttpRequest;
+import com.vtence.molecule.testing.http.HttpResponse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.vtence.molecule.testing.BodyContent.asText;
+import java.io.IOException;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 public class CanShowHelloWorld {
 
     private Server server;
-    private Request request = new Request();
-    private Response response = new Response();
-
-    private LandingController controller;
+    private HttpRequest request;
 
     @Before
     public void startServer() throws Exception {
         server = Clip.launch("0.0.0.0", 1818);
-        controller = new LandingController();
+        request = new HttpRequest("0.0.0.0", 1818);
     }
 
     @After
@@ -31,10 +29,9 @@ public class CanShowHelloWorld {
     }
 
     @Test
-    public void returnsOkWithHelloWorld() throws Exception {
-        controller.handle(request, response);
-
+    public void respondsOnSlash() throws IOException {
+        HttpResponse response = request.get("/");
         assertThat(response.statusCode(), is(200));
-        assertThat(asText(response), is("Hello World!"));
     }
+
 }
