@@ -9,10 +9,11 @@ import java.util.concurrent.ConcurrentMap;
 public class UrlRepository {
 
     private final ConcurrentMap<String, String> urls;
+    private final DB db;
 
-    public UrlRepository() {
-        DB db = DBMaker.newFileDB(new File("url.db")).closeOnJvmShutdown().make();
-        urls = db.createHashMap("urls").make();
+    public UrlRepository(String dbFilename) {
+        db = DBMaker.newFileDB(new File(dbFilename)).closeOnJvmShutdown().make();
+        urls = db.getHashMap("urls");
     }
 
     public String findByShortUrl(String shortUrl) {
@@ -21,5 +22,6 @@ public class UrlRepository {
 
     public void add(String shortened, String original) {
         urls.put(shortened, original);
+        db.commit();
     }
 }

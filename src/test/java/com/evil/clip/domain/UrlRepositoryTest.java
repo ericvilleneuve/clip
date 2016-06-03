@@ -11,8 +11,8 @@ public class UrlRepositoryTest {
     UrlRepository repository;
 
     @Before
-    public void thisRepository() throws Exception {
-        repository = new UrlRepository();
+    public void thisRepositoryWithSomeData() throws Exception {
+        repository = new UrlRepository("build/test-urls.db");
         repository.add("some-short-url", "http://some-original.url");
     }
 
