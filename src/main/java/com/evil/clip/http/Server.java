@@ -1,6 +1,6 @@
 package com.evil.clip.http;
 
-import com.evil.clip.view.ShortenFormView;
+import com.evil.clip.view.LandingView;
 import com.vtence.molecule.WebServer;
 import com.vtence.molecule.middlewares.FailureMonitor;
 import com.vtence.molecule.routing.DynamicRoutes;
@@ -23,7 +23,7 @@ public class Server {
 
         server.add(new FailureMonitor(toStandardError()));
         server.start(new DynamicRoutes() {{
-            get("/").to(new ShortenController(new ShortenFormView()));
+            get("/").to(new LandingController(new LandingView()));
         }});
     }
 

@@ -1,6 +1,6 @@
 package com.evil.clip.http;
 
-import com.evil.clip.view.ShortenFormView;
+import com.evil.clip.view.LandingView;
 import com.vtence.molecule.Request;
 import com.vtence.molecule.Response;
 import org.junit.Before;
@@ -12,17 +12,17 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class ShortenControllerTest {
+public class LandingControllerTest {
 
-    private ShortenController controller;
-    private ShortenFormView view;
+    private LandingController controller;
+    private LandingView view;
     private Response response = new Response();
     private Request request = new Request();
 
     @Before
     public void thisController() throws Exception {
-        view = mock(ShortenFormView.class);
-        controller = new ShortenController(view);
+        view = mock(LandingView.class);
+        controller = new LandingController(view);
     }
 
     @Test

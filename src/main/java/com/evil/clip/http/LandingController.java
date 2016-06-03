@@ -1,16 +1,16 @@
 package com.evil.clip.http;
 
-import com.evil.clip.view.ShortenFormView;
+import com.evil.clip.view.LandingView;
 import com.vtence.molecule.Application;
 import com.vtence.molecule.Request;
 import com.vtence.molecule.Response;
 import com.vtence.molecule.http.HttpStatus;
 
-public class ShortenController implements Application {
+public class LandingController implements Application {
 
-    private ShortenFormView view;
+    private LandingView view;
 
-    public ShortenController(ShortenFormView view) {
+    public LandingController(LandingView view) {
         this.view = view;
     }
 
