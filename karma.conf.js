@@ -41,7 +41,7 @@ module.exports = function karmaConfig(config) {
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
         // browsers: ['Chrome', 'Firefox'],
         browsers: [
-            'ChromeSmall'
+            'PhantomJS'
         ],
         customLaunchers: {
             ChromeSmall: {
