@@ -16,7 +16,7 @@ public class ExpandController implements Application {
 
     @Override
     public void handle(Request request, Response response) throws Exception {
-        String originalUrl = urlRepository.findByShortUrl(request.parameter("url"));
+        String originalUrl = urlRepository.findByShortUrl(request.parameter("hashed-url"));
 
         response.status(HttpStatus.OK).body(originalUrl).done();
     }

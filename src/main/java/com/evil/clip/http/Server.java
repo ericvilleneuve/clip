@@ -1,5 +1,6 @@
 package com.evil.clip.http;
 
+import com.evil.clip.domain.UrlRepository;
 import com.evil.clip.view.LandingView;
 import com.vtence.molecule.WebServer;
 import com.vtence.molecule.middlewares.FailureMonitor;
@@ -21,9 +22,13 @@ public class Server {
 
     public void start() throws IOException {
 
+        UrlRepository urlRepository = new UrlRepository("build/urls.db");
+
         server.add(new FailureMonitor(toStandardError()));
         server.start(new DynamicRoutes() {{
             get("/").to(new LandingController(new LandingView()));
+            get("/shorten").to(new ShortenController(urlRepository));
+            get("/expand").to(new ExpandController(urlRepository));
         }});
     }
 

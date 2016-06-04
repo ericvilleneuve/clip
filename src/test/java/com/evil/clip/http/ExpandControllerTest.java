@@ -32,17 +32,17 @@ public class ExpandControllerTest {
 
     @Test
     public void retrievesOriginalUrlFromShortened() throws Exception {
-        request.addParameter("url", "http://short.url");
+        request.addParameter("hashed-url", "jkpokypokp");
         controller.handle(request, response);
 
-        verify(urlRepository).findByShortUrl("http://short.url");
+        verify(urlRepository).findByShortUrl("jkpokypokp");
     }
 
     @Test
     public void returnsOriginalUrlWhenItExists() throws Exception {
-        request.addParameter("url", "http://short.url");
+        request.addParameter("hashed-url", "fjknfkjnf");
 
-        when(urlRepository.findByShortUrl("http://short.url")).thenReturn("http://original-long.url");
+        when(urlRepository.findByShortUrl("fjknfkjnf")).thenReturn("http://original-long.url");
         controller.handle(request, response);
 
         assertThat(asText(response), is("http://original-long.url"));

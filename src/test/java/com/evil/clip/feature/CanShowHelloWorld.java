@@ -1,6 +1,7 @@
-package com.evil.clip.http;
+package com.evil.clip.feature;
 
 import com.evil.clip.Clip;
+import com.evil.clip.http.Server;
 import com.vtence.molecule.testing.http.HttpRequest;
 import com.vtence.molecule.testing.http.HttpResponse;
 import org.junit.After;
@@ -31,6 +32,18 @@ public class CanShowHelloWorld {
     @Test
     public void respondsOnSlash() throws IOException {
         HttpResponse response = request.get("/");
+        assertThat(response.statusCode(), is(200));
+    }
+
+    @Test
+    public void respondsOnSlashShorten() throws IOException {
+        HttpResponse response = request.get("/shorten");
+        assertThat(response.statusCode(), is(200));
+    }
+
+    @Test
+    public void respondsOnSlashExpand() throws IOException {
+        HttpResponse response = request.get("/expand");
         assertThat(response.statusCode(), is(200));
     }
 
