@@ -13,20 +13,15 @@ import java.io.IOException;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public class CanShowHelloWorld {
+public class ServerTest {
 
     private Server server;
     private HttpRequest request;
 
     @Before
-    public void startServer() throws Exception {
+    public void thisServer() throws Exception {
         server = Clip.launch("0.0.0.0", 1818);
         request = new HttpRequest("0.0.0.0", 1818);
-    }
-
-    @After
-    public void stopServer() throws Exception {
-        server.stop();
     }
 
     @Test
@@ -47,4 +42,14 @@ public class CanShowHelloWorld {
         assertThat(response.statusCode(), is(200));
     }
 
+    @Test
+    public void canServeCssFiles() throws Exception {
+        HttpResponse response = request.get("/css/main.css");
+        assertThat(response.statusCode(), is(200));
+    }
+
+    @After
+    public void stopServer() throws Exception {
+        server.stop();
+    }
 }

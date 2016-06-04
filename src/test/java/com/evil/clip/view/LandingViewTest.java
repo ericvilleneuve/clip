@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 public class LandingViewTest {
@@ -19,7 +20,13 @@ public class LandingViewTest {
     }
 
     @Test
-    public void saysHelloWorld() throws Exception {
-        assertThat(document.body().text(), is("Hello World!"));
+    public void hasClipTitleAndHeading() throws Exception {
+        assertThat(document.title(), is("Cl.ip"));
+        assertThat(document.body().select("h2").text(), is("Cl.ip"));
+    }
+
+    @Test
+    public void includesMainCss() throws Exception {
+        assertThat(document.head().select("link[rel=stylesheet][href=/css/main.css]"), notNullValue());
     }
 }
