@@ -2,12 +2,14 @@ package com.evil.clip.view;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class LandingViewTest {
 
@@ -20,13 +22,30 @@ public class LandingViewTest {
     }
 
     @Test
-    public void hasClipTitleAndHeading() throws Exception {
+    public void hasClipTitleAndHeading() {
         assertThat(document.title(), is("Cl.ip"));
         assertThat(document.body().select("h2").text(), is("Cl.ip"));
     }
 
     @Test
-    public void includesMainCss() throws Exception {
+    public void includesMainCss() {
         assertThat(document.head().select("link[rel=stylesheet][href=/css/main.css]"), notNullValue());
+    }
+
+    @Test
+    public void hasFieldForUrlToShorten() {
+        Element urlField = document.body().select("input#url-to-shorten").first();
+        assertThat("Url field is missing.", urlField, notNullValue());
+        assertThat(urlField.attr("type"), is("url"));
+        assertThat(urlField.attr("placeholder"), is("Paste a link to shorten it"));
+        assertTrue(urlField.hasAttr("autofocus"));
+    }
+
+    @Test
+    public void hasButtonToShorten() {
+        Element button = document.body().select("button").first();
+        assertThat("Button is missing.", button, notNullValue());
+        assertThat(button.attr("type"), is("button"));
+        assertThat(button.text(), is("Shorten"));
     }
 }
