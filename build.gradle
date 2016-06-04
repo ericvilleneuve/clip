@@ -4,6 +4,10 @@ buildscript {
     }
 }
 
+plugins {
+    id "com.moowork.node" version "0.12"
+}
+
 apply plugin: 'java'
 apply plugin: 'application'
 mainClassName = 'com.evil.clip.Clip'
@@ -39,6 +43,12 @@ jar {
     }
 }
 
+node {
+    version = '6.2.1'
+    download = true
+}
+
+test.dependsOn npm_install, npm_test
 
 task stage {
     dependsOn build
