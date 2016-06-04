@@ -51,5 +51,5 @@ node {
 test.dependsOn npm_install, npm_test
 
 task stage {
-    dependsOn build
+    dependsOn build, test
 }
