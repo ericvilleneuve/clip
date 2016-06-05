@@ -53,7 +53,7 @@ describe("Shortener", function () {
         });
 
         var resultInput = $("#hashed-url-input");
-        expect(resultInput).toHaveValue("hashed");
+        expect(resultInput).toHaveValue("http://cl.ip/hashed");
     });
 
     afterEach(function () {

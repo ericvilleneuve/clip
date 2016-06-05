@@ -29,7 +29,7 @@ Shortener.prototype.doShorten = function doShorten(event) {
 
 Shortener.prototype.handleRequest = function handleRequest(event) {
     if (event.target.status === 200) {
-        this.resultInput.val(event.target.responseText);
+        this.resultInput.val("http://cl.ip/" + event.target.responseText);
     } else {
         console.log("error " + event.target.status);
     }
