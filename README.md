@@ -1,7 +1,7 @@
 # clip
 ![clip!](http://findicons.com/files/icons/196/office_tools/128/clip.png)
 
-A simple URL shortener. This is currently deployed and running at 
+A simple URL shortener. This is currently deployed and running at https://cl-ip.herokuapp.com/.
 
 ## Prerequisites
 Java 8
@@ -10,7 +10,7 @@ Java 8
 
 ### Running it locally
 * `./gradlew run`
-* When started, you simply hit http://localhost:7575
+* When started, you simply hit http://localhost:7575.
 
 ### Running Java tests
 `./gradlew test`
