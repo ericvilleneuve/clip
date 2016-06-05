@@ -9,6 +9,8 @@ module.exports = function karmaConfig(config) {
 
         // list of files / patterns to load in the browser
         files: [
+            'webapp/scripts/vendor/jquery*',
+            'webapp/scripts/vendor/*',
             'webapp/scripts/*.js',
             'src/test/javascript/helpers/*.js',
             'src/test/javascript/*.spec.js',
@@ -43,12 +45,6 @@ module.exports = function karmaConfig(config) {
         browsers: [
             'PhantomJS'
         ],
-        customLaunchers: {
-            ChromeSmall: {
-                base: 'Chrome',
-                flags: ['--window-size=300,100', '--window-position=9999,0']
-            }
-        },
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
         singleRun: false,
