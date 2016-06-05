@@ -1,1 +1,1 @@
-web: ./gradlew run -Dexec.args="localhost $PORT" --info
+web: ./gradlew run
