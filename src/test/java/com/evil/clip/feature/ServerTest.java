@@ -43,6 +43,16 @@ public class ServerTest {
     }
 
     @Test
+    public void respondsOnDynamicRouteWithHashedUrl() throws IOException {
+        HttpResponse response = request.get("/shorten?url=http://some-looooong.url");
+        String hashedUrl = response.bodyText();
+        response = request.get("/" + hashedUrl);
+
+        assertThat(response.statusCode(), is(200));
+        assertThat(response.bodyText(), is("http://some-looooong.url"));
+    }
+
+    @Test
     public void canServeCssFiles() throws Exception {
         HttpResponse response = request.get("/css/main.css");
         assertThat(response.statusCode(), is(200));
