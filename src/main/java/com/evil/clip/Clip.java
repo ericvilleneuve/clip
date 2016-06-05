@@ -10,12 +10,9 @@ public class Clip {
         String hostToBindTo = "0.0.0.0";
         int port = 7575;
 
-
-        System.out.println("args.length=" + args.length);
-        System.out.println("System.getenv(\"PORT\")=" + System.getenv("PORT"));
-        if (args.length == 2) {
-            //hostToBindTo = args[0];
-            port = Integer.valueOf(args[1]);
+        String systemPort = System.getenv("PORT");
+        if (systemPort != null) {
+            port = Integer.valueOf(systemPort);
         }
         Server server = launch(hostToBindTo, port);
         System.out.println("server is started on " + server.uri());
