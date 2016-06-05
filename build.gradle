@@ -59,5 +59,7 @@ run {
     systemProperties System.getProperties()
 
     /* Need to split the space-delimited value in the exec.args */
-    args System.getProperty("exec.args").split()
+    if ( System.hasProperty("exec.args") ) {
+        args System.getProperty("exec.args").split()
+    }
 }
