@@ -37,7 +37,7 @@ public class Server {
     }
 
     private StaticAssets staticAssets() {
-        return new StaticAssets(new FileServer(new File("webapp"))).serve("/css");
+        return new StaticAssets(new FileServer(new File("webapp"))).serve("/css", "/scripts");
     }
 
     public URI uri() {

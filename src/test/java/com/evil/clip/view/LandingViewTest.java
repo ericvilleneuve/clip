@@ -6,8 +6,11 @@ import org.jsoup.nodes.Element;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.Arrays.asList;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -29,7 +32,12 @@ public class LandingViewTest {
 
     @Test
     public void includesMainCss() {
-        assertThat(document.head().select("link[rel=stylesheet][href=/css/main.css]"), notNullValue());
+        assertThat(document.select("link[rel=stylesheet][href=/css/main.css]"), notNullValue());
+    }
+
+    @Test
+    public void includesJquery() {
+        assertThat(document.head().select("script[src=/scripts/vendor/jquery-2.2.3.min.js]"), notNullValue());
     }
 
     @Test
@@ -48,4 +56,23 @@ public class LandingViewTest {
         assertThat(button.attr("type"), is("button"));
         assertThat(button.text(), is("Shorten"));
     }
+
+    @Test
+    public void shortenerScriptIsIncluded() {
+        Element shortenerInclude = document.body().select("script[src=/scripts/shortener.js").first();
+        assertThat("Shortener script not included.", shortenerInclude, notNullValue());
+    }
+
+    @Test
+    public void widgetScriptAreIncluded() {
+        Element widgetScript = document.getElementById("inline-page-script");
+        assertThat(asLines(widgetScript), contains(
+                "new Shortener(\"url-to-shorten\", \"shorten-button\");"
+        ));
+    }
+
+    public static List<String> asLines(Element inlineScript) {
+        return asList(inlineScript.html().split("\n")).stream().map(String::trim).collect(Collectors.toList());
+    }
+
 }

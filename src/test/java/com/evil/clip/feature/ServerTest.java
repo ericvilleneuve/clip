@@ -48,6 +48,12 @@ public class ServerTest {
         assertThat(response.statusCode(), is(200));
     }
 
+    @Test
+    public void canServeJsFiles() throws Exception {
+        HttpResponse response = request.get("/scripts/shortener.js");
+        assertThat(response.statusCode(), is(200));
+    }
+
     @After
     public void stopServer() throws Exception {
         server.stop();

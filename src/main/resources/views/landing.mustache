@@ -5,21 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cl.ip</title>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/main.css">
+
+    <script src="/scripts/vendor/jquery-2.2.3.min.js"></script>
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <form class="form-signin">
-        <h2 class="form-signin-heading">Cl.ip</h2>
-        <input type="url" id="url-to-shorten" class="form-control" placeholder="Paste a link to shorten it" autofocus />
-        <button class="btn btn-lg btn-primary btn-block" type="button">Shorten</button>
-    </form>
+        <form class="form-signin">
+            <h2 class="form-signin-heading">Cl.ip</h2>
+            <input type="url" id="url-to-shorten" class="form-control" placeholder="Paste a link to shorten it" autofocus />
+            <button id="shorten-button" class="btn btn-lg btn-primary btn-block" type="button">Shorten</button>
+        </form>
 
-</div>
+    </div>
+
+    <script src="/scripts/shortener.js"></script>
+
+    <script id="inline-page-script">
+        new Shortener("url-to-shorten", "shorten-button");
+    </script>
 
 </body>
 </html>
