@@ -63,7 +63,7 @@ public class LandingViewTest {
         Element button = document.body().select("button").first();
 
         assertThat("Button is missing.", button, notNullValue());
-        assertThat(button.attr("type"), is("button"));
+        assertThat(button.attr("type"), is("submit"));
         assertThat(button.text(), is("Shorten"));
     }
 
@@ -76,7 +76,7 @@ public class LandingViewTest {
     @Test
     public void widgetScriptAreIncluded() {
         Element widgetScript = document.getElementById("inline-page-script");
-        assertThat(widgetScript.html().trim(), is("new Shortener(\"url-to-shorten\", \"short-url-result\", \"shorten-button\");"));
+        assertThat(widgetScript.html().trim(), is("new Shortener(\"url-to-shorten\", \"short-url-result\", \"shorten-form\");"));
     }
 
 }

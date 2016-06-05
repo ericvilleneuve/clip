@@ -1,6 +1,6 @@
 "use strict";
 
-var Shortener = function Shortener(inputId, resultInputId, buttonId) {
+var Shortener = function Shortener(inputId, resultInputId, formId) {
     this.input = $("#" + inputId);
     if (!this.input.length) {
         throw new Error("Input is mandatory.");
@@ -9,15 +9,17 @@ var Shortener = function Shortener(inputId, resultInputId, buttonId) {
     if (!this.resultInput.length) {
         throw new Error("Result url input is mandatory.");
     }
-    var button = document.getElementById(buttonId);
-    if (!button) {
-        throw new Error("Shorten button is mandatory.");
+    var form = document.getElementById(formId);
+    if (!form) {
+        throw new Error("Form is mandatory.");
     }
 
-    button.addEventListener("click", this.doShorten.bind(this));
+    form.addEventListener("submit", this.doShorten.bind(this));
 };
 
-Shortener.prototype.doShorten = function doShorten() {
+Shortener.prototype.doShorten = function doShorten(event) {
+    event.preventDefault();
+
     var request = new XMLHttpRequest();
 
     request.addEventListener("load", this.handleRequest.bind(this));

@@ -16,12 +16,12 @@
 
 <div class="container">
 
-    <form class="form-signin">
+    <form id="shorten-form" class="form-signin">
         <h2 class="form-signin-heading">Cl.ip</h2>
         <div class="input-group">
            <input type="url" id="url-to-shorten" class="form-control input-lg" placeholder="Paste a link to shorten it" autofocus autocomplete="off" required />
            <span class="input-group-btn">
-               <button id="shorten-button" class="btn btn-lg btn-success btn-block" type="button">Shorten</button>
+               <button id="shorten-button" class="btn btn-lg btn-success btn-block" type="submit">Shorten</button>
            </span>
         </div>
 
@@ -35,7 +35,7 @@
 <script src="/scripts/shortener.js"></script>
 
 <script id="inline-page-script">
-    new Shortener("url-to-shorten", "short-url-result", "shorten-button");
+    new Shortener("url-to-shorten", "short-url-result", "shorten-form");
 </script>
 
 </body>

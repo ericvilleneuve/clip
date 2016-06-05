@@ -3,12 +3,14 @@ describe("Shortener", function () {
 
     beforeEach(function () {
         setFixtures(
-            '<input id="url-to-shorten-input" />' +
-            '<button type="button" id="shorten-button">Shorten</button>' +
-            '<input id="hashed-url-input" />'
+            '<form id="some-form">' +
+            '   <input id="url-to-shorten-input" />' +
+            '   <button type="submit" id="shorten-button">Shorten</button>' +
+            '   <input id="hashed-url-input" />' +
+            '</form>'
         );
         jasmine.Ajax.install();
-        shortener = new Shortener("url-to-shorten-input", "hashed-url-input", "shorten-button");
+        shortener = new Shortener("url-to-shorten-input", "hashed-url-input", "some-form");
     });
 
     describe("on startup", function () {
@@ -24,10 +26,10 @@ describe("Shortener", function () {
             }).toThrow(new Error("Result url input is mandatory."));
         });
 
-        it("requires the button", function () {
+        it("requires the form", function () {
             expect(function () {
                 new Shortener("url-to-shorten-input", "hashed-url-input");
-            }).toThrow(new Error("Shorten button is mandatory."));
+            }).toThrow(new Error("Form is mandatory."));
         });
     });
 
