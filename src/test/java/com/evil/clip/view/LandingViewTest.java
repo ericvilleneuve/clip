@@ -6,11 +6,8 @@ import org.jsoup.nodes.Element;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static java.util.Arrays.asList;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -32,26 +29,29 @@ public class LandingViewTest {
 
     @Test
     public void includesMainCss() {
-        assertThat(document.select("link[rel=stylesheet][href=/css/main.css]"), notNullValue());
+        assertThat(document.select("link[rel=stylesheet][href=/css/main.css]").first(), notNullValue());
     }
 
     @Test
     public void includesJquery() {
-        assertThat(document.head().select("script[src=/scripts/vendor/jquery-2.2.3.min.js]"), notNullValue());
+        assertThat(document.head().select("script[src=/scripts/vendor/jquery-2.2.3.min.js]").first(), notNullValue());
     }
 
     @Test
     public void hasFieldForUrlToShorten() {
         Element urlField = document.body().select("input#url-to-shorten").first();
+
         assertThat("Url field is missing.", urlField, notNullValue());
         assertThat(urlField.attr("type"), is("url"));
         assertThat(urlField.attr("placeholder"), is("Paste a link to shorten it"));
         assertTrue(urlField.hasAttr("autofocus"));
+        assertThat(urlField.attr("autocomplete"), is("off"));
     }
 
     @Test
     public void hasButtonToShorten() {
         Element button = document.body().select("button").first();
+
         assertThat("Button is missing.", button, notNullValue());
         assertThat(button.attr("type"), is("button"));
         assertThat(button.text(), is("Shorten"));
@@ -66,13 +66,7 @@ public class LandingViewTest {
     @Test
     public void widgetScriptAreIncluded() {
         Element widgetScript = document.getElementById("inline-page-script");
-        assertThat(asLines(widgetScript), contains(
-                "new Shortener(\"url-to-shorten\", \"shorten-button\");"
-        ));
-    }
-
-    public static List<String> asLines(Element inlineScript) {
-        return asList(inlineScript.html().split("\n")).stream().map(String::trim).collect(Collectors.toList());
+        assertThat(widgetScript.html().trim(), is("new Shortener(\"url-to-shorten\", \"shorten-button\");"));
     }
 
 }

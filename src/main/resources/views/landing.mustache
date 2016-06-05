@@ -14,21 +14,25 @@
 
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <form class="form-signin">
-            <h2 class="form-signin-heading">Cl.ip</h2>
-            <input type="url" id="url-to-shorten" class="form-control" placeholder="Paste a link to shorten it" autofocus />
-            <button id="shorten-button" class="btn btn-lg btn-primary btn-block" type="button">Shorten</button>
-        </form>
+    <form class="form-signin">
+        <h2 class="form-signin-heading">Cl.ip</h2>
+        <div class="input-group">
+            <input type="url" id="url-to-shorten" class="form-control input-lg" placeholder="Paste a link to shorten it" autofocus autocomplete="off"/>
+           <span class="input-group-btn">
+               <button id="shorten-button" class="btn btn-lg btn-success btn-block" type="button">Shorten</button>
+           </span>
+        </div>
+    </form>
 
-    </div>
+</div>
 
-    <script src="/scripts/shortener.js"></script>
+<script src="/scripts/shortener.js"></script>
 
-    <script id="inline-page-script">
-        new Shortener("url-to-shorten", "shorten-button");
-    </script>
+<script id="inline-page-script">
+    new Shortener("url-to-shorten", "shorten-button");
+</script>
 
 </body>
 </html>
