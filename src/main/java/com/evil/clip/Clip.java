@@ -10,7 +10,9 @@ public class Clip {
         String hostToBindTo = "0.0.0.0";
         int port = 7575;
 
-        System.out.println("args.length="+args.length);
+
+        System.out.println("args.length=" + args.length);
+        System.out.println("System.getenv(\"PORT\")=" + System.getenv("PORT"));
         if (args.length == 2) {
             //hostToBindTo = args[0];
             port = Integer.valueOf(args[1]);
