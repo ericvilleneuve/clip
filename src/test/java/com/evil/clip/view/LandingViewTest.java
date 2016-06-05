@@ -76,7 +76,7 @@ public class LandingViewTest {
     @Test
     public void widgetScriptAreIncluded() {
         Element widgetScript = document.getElementById("inline-page-script");
-        assertThat(widgetScript.html().trim(), is("new Shortener(\"url-to-shorten\", \"shorten-button\");"));
+        assertThat(widgetScript.html().trim(), is("new Shortener(\"url-to-shorten\", \"short-url-result\", \"shorten-button\");"));
     }
 
 }
