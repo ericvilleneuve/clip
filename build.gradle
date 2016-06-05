@@ -53,13 +53,3 @@ test.dependsOn npm_install, npm_test
 task stage {
     dependsOn build, test
 }
-
-run {
-    /* Can pass all the properties: */
-    systemProperties System.getProperties()
-
-    /* Need to split the space-delimited value in the exec.args */
-    if ( System.hasProperty("exec.args") ) {
-        args System.getProperty("exec.args").split()
-    }
-}

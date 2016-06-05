@@ -14,6 +14,7 @@ public class Clip {
         if (systemPort != null) {
             port = Integer.valueOf(systemPort);
         }
+
         Server server = launch(hostToBindTo, port);
         System.out.println("server is started on " + server.uri());
     }
