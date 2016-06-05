@@ -44,8 +44,18 @@ public class LandingViewTest {
         assertThat("Url field is missing.", urlField, notNullValue());
         assertThat(urlField.attr("type"), is("url"));
         assertThat(urlField.attr("placeholder"), is("Paste a link to shorten it"));
-        assertTrue(urlField.hasAttr("autofocus"));
         assertThat(urlField.attr("autocomplete"), is("off"));
+        assertTrue(urlField.hasAttr("autofocus"));
+        assertTrue(urlField.hasAttr("required"));
+    }
+
+    @Test
+    public void hasFieldToDisplayResult() {
+        Element resultField = document.body().select("input#short-url-result").first();
+
+        assertThat("Result url field is missing.", resultField, notNullValue());
+        assertThat(resultField.attr("type"), is("url"));
+        assertTrue(resultField.hasAttr("readonly"));
     }
 
     @Test
