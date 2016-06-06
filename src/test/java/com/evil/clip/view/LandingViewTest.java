@@ -63,6 +63,7 @@ public class LandingViewTest {
         Element testLinkContainer = document.body().select("h4#test-link").first();
 
         assertThat("Test link container is missing.", testLinkContainer, notNullValue());
+        assertTrue(testLinkContainer.hasAttr("hidden"));
     }
 
     @Test

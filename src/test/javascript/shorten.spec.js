@@ -7,7 +7,7 @@ describe("Shortener", function () {
             '   <input id="url-to-shorten-input" />' +
             '   <button type="submit" id="shorten-button">Shorten</button>' +
             '   <input id="hashed-url-input" />' +
-            '   <div id="test-link-container"></div>' +
+            '   <div id="test-link-container" hidden></div>' +
             '</form>'
         );
         jasmine.Ajax.install();
@@ -38,6 +38,11 @@ describe("Shortener", function () {
                 new Shortener("url-to-shorten-input", "hashed-url-input", "test-link-container");
             }).toThrow(new Error("Form is mandatory."));
         });
+
+        it("keeps the test link hidden", function () {
+            var testLinkContainer = $("#test-link-container");
+            expect(testLinkContainer).not.toBeVisible();
+        })
     });
 
     it("calls shorten controller on button click", function () {
@@ -72,10 +77,13 @@ describe("Shortener", function () {
             responseText: "hashed"
         });
 
-        var testLink = $("#test-link-container a");
+        var testLinkContainer = $("#test-link-container");
+        expect(testLinkContainer).toBeVisible();
+
+        var testLink = testLinkContainer.find("a");
         expect(testLink).toHaveAttr("href", "/hashed");
         expect(testLink).toHaveAttr("target", "_blank");
-        expect(testLink).toHaveHtml("http://cl.ip/hashed");
+        expect(testLink).toHaveHtml("Try me!");
     });
 
     afterEach(function () {

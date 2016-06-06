@@ -18,7 +18,7 @@ var Shortener = function Shortener(inputId, resultInputId, testLinkContainer, fo
         throw new Error("Form is mandatory.");
     }
 
-    this.testLink = $('<a href="" id="test-link" target="_blank"></a>');
+    this.testLink = $('<a href="" id="test-link" target="_blank">Try me!</a>');
     this.testLinkContainer.append(this.testLink);
 
     form.addEventListener("submit", this.doShorten.bind(this));
@@ -36,12 +36,14 @@ Shortener.prototype.doShorten = function doShorten(event) {
 
 Shortener.prototype.handleRequest = function handleRequest(event) {
     if (event.target.status === 200) {
-        var hashedUrl = event.target.responseText;
-        this.resultInput.val("http://cl.ip/" + hashedUrl);
-        this.testLink.attr("href", "/" + hashedUrl);
-        this.testLink.html("http://cl.ip/" + hashedUrl);
+        this.updateShortenedUrls(event.target.responseText);
     } else {
         console.log("error " + event.target.status);
     }
 };
 
+Shortener.prototype.updateShortenedUrls = function updateShortenedUrls(hashedUrl) {
+    this.resultInput.val("http://cl.ip/" + hashedUrl);
+    this.testLink.attr("href", "/" + hashedUrl);
+    this.testLinkContainer.removeAttr("hidden");
+};
