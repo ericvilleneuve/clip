@@ -38,7 +38,11 @@ public class ServerTest {
 
     @Test
     public void respondsOnSlashExpand() throws IOException {
-        HttpResponse response = request.get("/expand");
+        HttpResponse response = request.get("/shorten?url=http://some-looooong.url");
+        String hashedUrl = response.bodyText();
+
+        response = request.get("/expand?hashed-url=" + hashedUrl);
+
         assertThat(response.statusCode(), is(200));
     }
 
