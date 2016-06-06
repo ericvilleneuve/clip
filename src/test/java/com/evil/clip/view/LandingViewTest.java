@@ -59,6 +59,13 @@ public class LandingViewTest {
     }
 
     @Test
+    public void hasTestLink() {
+        Element testLinkContainer = document.body().select("h4#test-link").first();
+
+        assertThat("Test link container is missing.", testLinkContainer, notNullValue());
+    }
+
+    @Test
     public void hasButtonToShorten() {
         Element button = document.body().select("button").first();
 
@@ -76,7 +83,7 @@ public class LandingViewTest {
     @Test
     public void widgetScriptAreIncluded() {
         Element widgetScript = document.getElementById("inline-page-script");
-        assertThat(widgetScript.html().trim(), is("new Shortener(\"url-to-shorten\", \"short-url-result\", \"shorten-form\");"));
+        assertThat(widgetScript.html().trim(), is("new Shortener(\"url-to-shorten\", \"short-url-result\", \"test-link\", \"shorten-form\");"));
     }
 
 }

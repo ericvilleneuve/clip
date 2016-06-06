@@ -28,6 +28,8 @@
         <div class="form-group">
             <input type="url" id="short-url-result" class="form-control input-lg" readonly />
         </div>
+
+        <h4 class="text-center" id="test-link"></h4>
     </form>
 
 </div>
@@ -35,7 +37,7 @@
 <script src="/scripts/shortener.js"></script>
 
 <script id="inline-page-script">
-    new Shortener("url-to-shorten", "short-url-result", "shorten-form");
+    new Shortener("url-to-shorten", "short-url-result", "test-link", "shorten-form");
 </script>
 
 </body>
