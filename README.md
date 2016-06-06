@@ -3,8 +3,8 @@
 
 A simple URL shortener. This is currently deployed and running at https://cl-ip.herokuapp.com/.
 
-The UI is self-explanatory. The shortened URL is shown in the text field with an imaginary `http://cl.ip/` domain.
-There is also a test link appearing underneath which allows to recover the original URL. 
+The shortened URL is shown in the text field with an imaginary `http://cl.ip/` domain.
+A test link also appears underneath which allows to recover the original URL. 
 For demonstration purposes, that page doesn't actually redirect but simply shows the expanded URL. 
 
 ## Prerequisites
@@ -24,6 +24,6 @@ Java 8
 
 ## Running in IntelliJ 16
 1. Import as a Gradle project with the following options:
-![Import Gradle!](http://i.imgur.com/sIblijN.png)
+   * ![Import Gradle!](http://i.imgur.com/sIblijN.png)
 2. Run `main()` in `com.evil.clip.Clip`
 3. Hit [http://localhost:7575](http://localhost:7575)
