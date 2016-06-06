@@ -26,7 +26,10 @@ public class ExpandControllerTest {
 
     @Test
     public void returnsOk() throws Exception {
+        when(urlRepository.findByShortUrl(any())).thenReturn("http://any.url");
+
         controller.handle(request, response);
+
         assertThat(response.statusCode(), is(200));
     }
 
@@ -46,5 +49,16 @@ public class ExpandControllerTest {
         controller.handle(request, response);
 
         assertThat(asText(response), is("http://original-long.url"));
+    }
+
+    @Test
+    public void displaysMessageWhenUrlNotFound() throws Exception {
+        request.addParameter("hashed-url", "non-existing-hashed-url");
+
+        when(urlRepository.findByShortUrl("non-existing-hashed-url")).thenReturn(null);
+        controller.handle(request, response);
+
+        assertThat(response.statusCode(), is(404));
+        assertThat(asText(response), is("URL not found."));
     }
 }

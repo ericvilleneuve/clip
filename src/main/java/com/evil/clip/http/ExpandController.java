@@ -18,6 +18,11 @@ public class ExpandController implements Application {
     public void handle(Request request, Response response) throws Exception {
         String originalUrl = urlRepository.findByShortUrl(request.parameter("hashed-url"));
 
+        if (originalUrl == null) {
+            response.status(HttpStatus.NOT_FOUND).body("URL not found.").done();
+            return;
+        }
+
         response.status(HttpStatus.OK).body(originalUrl).done();
     }
 }
