@@ -10,7 +10,7 @@ Java 8
 
 ### Running it locally
 * `./gradlew run`
-* When started, you simply hit http://localhost:7575.
+* When started, you simply hit `http://localhost:7575`.
 
 ### Running Java tests
 `./gradlew test`
