@@ -43,6 +43,8 @@ public class LandingViewTest {
 
         assertThat("Url field is missing.", urlField, notNullValue());
         assertThat(urlField.attr("type"), is("url"));
+        assertThat(urlField.attr("pattern"), is("https?://.+"));
+        assertThat(urlField.attr("title"), is("Valid URL starting with http:// or https://"));
         assertThat(urlField.attr("placeholder"), is("Paste a link to shorten it"));
         assertThat(urlField.attr("autocomplete"), is("off"));
         assertTrue(urlField.hasAttr("autofocus"));
