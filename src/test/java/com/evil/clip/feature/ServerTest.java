@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
+import static org.hamcrest.Matchers.endsWith;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -43,7 +44,7 @@ public class ServerTest {
         response = request.get("/" + hashedUrl);
 
         assertThat(response.statusCode(), is(200));
-        assertThat(response.bodyText(), is("http://some-looooong.url"));
+        assertThat(response.bodyText(), endsWith("http://some-looooong.url"));
     }
 
     @Test

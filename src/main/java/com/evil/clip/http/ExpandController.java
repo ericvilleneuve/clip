@@ -23,6 +23,6 @@ public class ExpandController implements Application {
             return;
         }
 
-        response.status(HttpStatus.OK).body(originalUrl).done();
+        response.status(HttpStatus.OK).body("The real thing would redirect you to " + originalUrl).done();
     }
 }

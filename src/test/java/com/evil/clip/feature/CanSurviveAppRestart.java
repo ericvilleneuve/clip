@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.evil.clip.Clip.launch;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.endsWith;
 import static org.junit.Assert.assertThat;
 
 public class CanSurviveAppRestart {
@@ -33,13 +33,13 @@ public class CanSurviveAppRestart {
         HttpRequest request = new HttpRequest(host, port);
         HttpResponse response = request.get("/" + expectedShortUrl);
 
-        assertThat(response.bodyText(), is("http://original-loooong.url"));
+        assertThat(response.bodyText(), endsWith("http://original-loooong.url"));
 
         server.stop();
         server.start();
 
         response = request.get("/" + expectedShortUrl);
-        assertThat(response.bodyText(), is("http://original-loooong.url"));
+        assertThat(response.bodyText(), endsWith("http://original-loooong.url"));
     }
 
     @After

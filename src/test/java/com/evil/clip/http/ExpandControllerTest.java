@@ -34,7 +34,7 @@ public class ExpandControllerTest {
     }
 
     @Test
-    public void retrievesOriginalUrlFromShortened() throws Exception {
+    public void retrievesOriginalUrlFromRepository() throws Exception {
         request.addParameter("hashed-url", "jkpokypokp");
         controller.handle(request, response);
 
@@ -48,11 +48,11 @@ public class ExpandControllerTest {
         when(urlRepository.findByShortUrl("fjknfkjnf")).thenReturn("http://original-long.url");
         controller.handle(request, response);
 
-        assertThat(asText(response), is("http://original-long.url"));
+        assertThat(asText(response), is("The real thing would redirect you to http://original-long.url"));
     }
 
     @Test
-    public void displaysMessageWhenUrlNotFound() throws Exception {
+    public void returns404AndDisplaysMessageWhenUrlNotFound() throws Exception {
         request.addParameter("hashed-url", "non-existing-hashed-url");
 
         when(urlRepository.findByShortUrl("non-existing-hashed-url")).thenReturn(null);
