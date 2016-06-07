@@ -31,14 +31,14 @@ public class CanSurviveAppRestart {
     @Test
     public void getsSameExpandedUrlAfterRestart() throws Exception {
         HttpRequest request = new HttpRequest(host, port);
-        HttpResponse response = request.get("/expand?hashed-url=" + expectedShortUrl);
+        HttpResponse response = request.get("/" + expectedShortUrl);
 
         assertThat(response.bodyText(), is("http://original-loooong.url"));
 
         server.stop();
         server.start();
 
-        response = request.get("/expand?hashed-url=" + expectedShortUrl);
+        response = request.get("/" + expectedShortUrl);
         assertThat(response.bodyText(), is("http://original-loooong.url"));
     }
 

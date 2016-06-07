@@ -32,7 +32,6 @@ public class Server {
         server.start(new DynamicRoutes() {{
             get("/").to(new LandingController(new LandingView()));
             get("/shorten").to(new ShortenController(urlRepository));
-            get("/expand").to(new ExpandController(urlRepository));
             get("/:hashed-url").to(new ExpandController(urlRepository));
         }});
     }
