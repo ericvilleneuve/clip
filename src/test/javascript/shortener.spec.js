@@ -46,12 +46,12 @@ describe("Shortener", function () {
     });
 
     it("calls shorten controller on button click", function () {
-        $("input#url-to-shorten-input").val("http://some.url");
+        $("input#url-to-shorten-input").val("http://some.url?param1=value1&param2=value2");
         $("button").click();
 
         var request = jasmine.Ajax.requests.mostRecent();
 
-        expect(request.url).toBe('shorten?url=http://some.url');
+        expect(request.url).toBe('shorten?url=' + encodeURIComponent('http://some.url?param1=value1&param2=value2'));
         expect(request.method).toBe('GET');
     });
 

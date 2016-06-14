@@ -30,7 +30,7 @@ Shortener.prototype.doShorten = function doShorten(event) {
     var request = new XMLHttpRequest();
 
     request.addEventListener("load", this.handleRequest.bind(this));
-    request.open("GET", "shorten?url=" + this.input.val());
+    request.open("GET", "shorten?url=" + encodeURIComponent(this.input.val()));
     request.send();
 };
 
